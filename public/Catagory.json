@@ -1,7 +1,7 @@
 [
   {
     "categoryId": 0,
-    "categoryName": "All Skills"
+    "categoryName": "All-Skills"
   },
   {
     "categoryId": 1,
@@ -17,14 +17,14 @@
   },
   {
     "categoryId": 4,
-    "categoryName": "Art & Design"
+    "categoryName": "Art-&-Design"
   },
   {
     "categoryId": 5,
-    "categoryName": "Fitness & Health"
+    "categoryName": "Fitness-&-Health"
   },
   {
     "categoryId": 6,
-    "categoryName": "Cooking & Culinary"
+    "categoryName": "Cooking-&-Culinary"
   }
 ]

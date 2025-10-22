@@ -16,7 +16,7 @@ export default function SkillsSwiper() {
       navigation
       pagination={{ clickable: true }}
       spaceBetween={20}
-      slidesPerView={3} // change as needed
+      slidesPerView={1} // change as needed
     >
       {allSkills.map((item) => (
         <SwiperSlide key={item.skillId} >

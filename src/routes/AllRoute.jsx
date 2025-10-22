@@ -1,4 +1,3 @@
-
 import React from "react";
 import { createBrowserRouter } from "react-router";
 import Main from "../pages/Main";
@@ -9,41 +8,47 @@ import AllSkills from "../components/AllSkills";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import SingleSkills from "../pages/SingleSkills";
+import SkillsDetails from "../pages/SkillsDetails";
 
 export const AllRoute = createBrowserRouter([
   {
     path: "/",
-    element: (
-        <Main />
-    ),
-    children:[
+    element: <Main />,
+    children: [
       {
-        path:"/",
+        path: "/",
         loader: () => fetch("/8data.json"),
         HydrateFallback: Loading,
-        Component:Swiper
-      },{
-        path:'profile',
-        Component:Profile
+        Component: Swiper,
       },
       {
-        path: 'allSkills',
-        Component:AllSkills,
+        path: "profile",
+        Component: Profile,
+      },
+      {
+        path: "allSkills",
+        Component: AllSkills,
         loader: () => fetch("/8data.json"),
         HydrateFallback: Loading,
       },
-      {
-        path: 'skills/:id',
-        Component:SingleSkills,
-        loader: () => fetch("/8data.json"),
-        HydrateFallback: Loading,
-      }
-    ]
-  },{
-    path:'/login',
-    Component:Login
-  },{
-    path:'/register',
-    Component:Register
-  }
+        {
+            path: "catagory/:id",
+            loader: () => fetch("/8data.json"),
+            HydrateFallback: Loading,
+            Component: SingleSkills,
+      },
+    ],
+  },
+  {
+    path: "/skills/:id",
+    Component: SkillsDetails,
+  },
+  {
+    path: "/login",
+    Component: Login,
+  },
+  {
+    path: "/register",
+    Component: Register,
+  },
 ]);

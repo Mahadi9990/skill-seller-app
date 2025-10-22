@@ -12,13 +12,13 @@ export default function AllSkills() {
   return (
     <div>
       <div className="">
-        <div className="flex justify-center items-center gap-4 p-4">
+        <div className="flex justify-center items-center gap-4 p-4 mx-auto">
           {catagory.map((item)=> <div key={item.categoryId}>
-            <NavLink className='btn'>{item.categoryName}</NavLink>
+            <NavLink to={`/catagory/${item.categoryName}`} className='btn'>{item.categoryName}</NavLink>
         </div>)}
         </div>
       </div>
-      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-auto">
         {data.map((item) => (
           <Link  key={item.skillId} to={`/skills/${item.skillId}`}>
             <div className="">
