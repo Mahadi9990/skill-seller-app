@@ -1,10 +1,30 @@
-
 [
-    "allSkills",
-    "Music",
-    "Language",
-    "Technology",
-    "Art & Design",
-    "Fitness & Health",
-    "Cooking & Culinary"
-  ]
+  {
+    "categoryId": 0,
+    "categoryName": "All Skills"
+  },
+  {
+    "categoryId": 1,
+    "categoryName": "Music"
+  },
+  {
+    "categoryId": 2,
+    "categoryName": "Language"
+  },
+  {
+    "categoryId": 3,
+    "categoryName": "Technology"
+  },
+  {
+    "categoryId": 4,
+    "categoryName": "Art & Design"
+  },
+  {
+    "categoryId": 5,
+    "categoryName": "Fitness & Health"
+  },
+  {
+    "categoryId": 6,
+    "categoryName": "Cooking & Culinary"
+  }
+]
