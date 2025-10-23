@@ -4,11 +4,13 @@ import Main from "../pages/Main";
 import Swiper from "../components/Swiper";
 import Profile from "../pages/Profile";
 import Loading from "../pages/Loading";
-import AllSkills from "../components/AllSkills";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import SingleSkills from "../pages/SingleSkills";
 import SkillsDetails from "../pages/SkillsDetails";
+import Error from "../pages/Error";
+import AllSkillsOutlet from "../components/AllSkillsOutlet";
+import No from "../components/no";
 
 export const AllRoute = createBrowserRouter([
   {
@@ -27,21 +29,29 @@ export const AllRoute = createBrowserRouter([
       },
       {
         path: "allSkills",
-        Component: AllSkills,
-        loader: () => fetch("/8data.json"),
-        HydrateFallback: Loading,
-      },
-        {
+        Component: AllSkillsOutlet,
+        children: [
+          {
+            index: true,
+            loader: () => fetch("/8data.json"),
+            HydrateFallback: Loading,
+            Component: No
+          },
+          {
             path: "catagory/:id",
             loader: () => fetch("/8data.json"),
             HydrateFallback: Loading,
             Component: SingleSkills,
+          },
+        ],
       },
     ],
   },
   {
-    path: "/skills/:id",
+    path: "skills/:id",
     Component: SkillsDetails,
+    loader: () => fetch("/8data.json"),
+    HydrateFallback: Loading,
   },
   {
     path: "/login",
@@ -50,5 +60,9 @@ export const AllRoute = createBrowserRouter([
   {
     path: "/register",
     Component: Register,
+  },
+  {
+    path: "*",
+    Component: Error,
   },
 ]);
