@@ -38,13 +38,13 @@ export default function Header() {
           </div>
           <Link to='/' className="text-4xl font-bold">Skills Seller</Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="navbar-center hidden lg:flex overflow-hidden">
           <ul className="menu menu-horizontal px-1">
             {links}
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to='/login' className="btn">Login</Link>
+          <Link to='/auth/login' className="btn">Login</Link>
         </div>
       </div>
     </div>
