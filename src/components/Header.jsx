@@ -2,22 +2,32 @@ import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import { toast, ToastContainer } from "react-toastify";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Header() {
-  const {user,singOutUser} =use(AuthContext)
-  const handleSingout= ()=>{
+  const { user, singOutUser } = use(AuthContext);
+  const handleSingout = () => {
     singOutUser()
-    .then(() => {
-   toast('Sign-out successful')
-}).catch((error) => {
-   console.log(error)
-});
-  }
-    const links =<>
-            <NavLink className='pr-3' to={'/'}>Home</NavLink>
-            <NavLink className='pr-3' to={'/allSkills'}>AllSkills</NavLink>
-            <NavLink className='pr-3' to={'/profile'}>Profile</NavLink>
-        </>
+      .then(() => {
+        toast("Sign-out successful");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const links = (
+    <>
+      <NavLink className="pr-3" to={"/"}>
+        Home
+      </NavLink>
+      <NavLink className="pr-3" to={"/allSkills"}>
+        AllSkills
+      </NavLink>
+      <NavLink className="pr-3" to={"/profile"}>
+        Profile
+      </NavLink>
+    </>
+  );
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
@@ -47,18 +57,42 @@ export default function Header() {
               {links}
             </ul>
           </div>
-          <Link to='/' className="text-4xl font-bold">Skills Seller</Link>
+          <Link to="/" className="text-md md:text-2xl lg:text-4xl font-bold">
+            Skills Seller
+          </Link>
         </div>
         <div className="navbar-center hidden lg:flex overflow-hidden">
-          <ul className="menu menu-horizontal px-1">
-            {links}
-          </ul>
+          <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
-          <p>{user && user.email}</p>
-          {user ? <button onClick={handleSingout} className="btn">LogOut</button> :<Link to='/auth/login' className="btn">Login</Link>}
+          {user ? (
+            <div className="">
+              {user && user.photoUrl ? (
+                <img
+                  className="h-8 w-8 rounded-full"
+                  src={`${user?.photoUrl}`}
+                  alt=""
+                />
+              ) : (
+                <p className="px-3">
+                  <FaUserCircle className="" />
+                </p>
+              )}
+            </div>
+          ) : (
+            ""
+          )}
+          {user ? (
+            <button onClick={handleSingout} className="btn">
+              LogOut
+            </button>
+          ) : (
+            <Link to="/auth/login" className="btn">
+              Login
+            </Link>
+          )}
         </div>
-        <ToastContainer/>
+        <ToastContainer />
       </div>
     </div>
   );

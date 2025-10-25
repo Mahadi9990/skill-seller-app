@@ -51,7 +51,6 @@ export default function Register() {
             type="text"
             className="input w-full"
             placeholder="user name"
-            required
           />
           <label className="label">Photo URL</label>
           <input
@@ -59,7 +58,6 @@ export default function Register() {
             type="text"
             className="input w-full"
             placeholder="Photo URL"
-            required
           />
           <label className="label">Email</label>
           <input

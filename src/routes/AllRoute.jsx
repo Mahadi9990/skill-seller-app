@@ -13,6 +13,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Auth from "../pages/Auth";
 import PrivateRoute from "../provider/PrivateRoute";
+import UpdateUser from "../pages/UpdateUser";
 
 export const AllRoute = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ export const AllRoute = createBrowserRouter([
         Component: Register,
       },
     ],
+  },
+  {
+    path: "/updateUserDetails",
+    Component: UpdateUser,
   },
   {
     path: "*",
