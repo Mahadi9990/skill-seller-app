@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import Header from "../components/Header";
 
 export default function Register() {
-  const { createUser, setuser } = use(AuthContext);
+  const { createUser, setuser,googleSubmit } = use(AuthContext);
   const navigate =useNavigate()
   const handleRegister = (e) => {
     e.preventDefault();
@@ -25,6 +25,19 @@ export default function Register() {
         const errorCode = error.code;
         const errorMessage = error.message;
         toast(errorCode, errorMessage);
+      });
+  };
+  const handleGoogle = () => {
+    googleSubmit()
+      .then((result) => {
+        const user = result.user;
+        setuser(user);
+        navigate(`${location.state ? location.state : "/"}`);
+        toast("Sing in successfully");
+        setuser(user);
+      })
+      .catch((error) => {
+        toast(error);
       });
   };
   return (
@@ -66,6 +79,7 @@ export default function Register() {
             required
           />
           <button className="btn btn-neutral mt-4">Register</button>
+          <button onClick={handleGoogle} className="btn btn-success mt-4">Google</button>
           <p>
             Have a account go to{" "}
             <Link className="text-red-600 font-bold" to="/auth/login">
