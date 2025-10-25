@@ -14,7 +14,6 @@ export default function Register() {
     const photoUrl = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(userName, photoUrl, email, password);
     createUser(email, password)
       .then((result) => {
         setuser(result.user);

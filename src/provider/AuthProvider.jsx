@@ -19,7 +19,6 @@ const AuthProvider = ({ children }) => {
   const googleSubmit =()=>{
     return signInWithPopup(auth, googleProvider)
   }
-  console.log(user);
   const createUser = (email, password) => {
     setloading(true)
     return createUserWithEmailAndPassword(auth, email, password);
