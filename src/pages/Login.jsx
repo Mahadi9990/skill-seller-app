@@ -1,27 +1,34 @@
-import React, { use, useRef } from "react";
+import React, { use, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
 import Header from "../components/Header";
 import { toast, ToastContainer } from "react-toastify";
+import { FaEye, FaEyeSlash } from "react-icons/fa"; 
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
   const emailRef = useRef();
   const { singIn, setuser, forgotEmail, googleSubmit } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [showPassword, setShowPassword] = useState(false); 
+
   const handleForgotPassword = () => {
     const email = emailRef.current.value;
+    if (!email) {
+      toast.error("Please enter your email first!");
+      return;
+    }
     forgotEmail(email)
       .then(() => {
-        toast("Cheack Our Email");
+        toast.success("Check your email for reset instructions");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        toast(errorCode, errorMessage);
-        // ..
+        toast.error(error.message);
       });
   };
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -31,26 +38,24 @@ export default function Login() {
       .then((userCredential) => {
         const user = userCredential.user;
         setuser(user);
+        toast.success("Signed in successfully!");
         navigate(`${location.state ? location.state : "/"}`);
-        toast("Sing in successfully");
       })
       .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        toast(errorCode, errorMessage);
+        toast.error(error.message);
       });
   };
+
   const handleGoogle = () => {
     googleSubmit()
       .then((result) => {
         const user = result.user;
         setuser(user);
+        toast.success("Signed in with Google!");
         navigate(`${location.state ? location.state : "/"}`);
-        toast("Sing in successfully");
-        setuser(user);
       })
       .catch((error) => {
-        toast(error);
+        toast.error(error.message);
       });
   };
 
@@ -58,7 +63,7 @@ export default function Login() {
     <div>
       <Header />
       <div className="card-body max-w-[600px] mx-auto">
-        <h1 className="text-2xl font-extrabold text-center">Login page</h1>
+        <h1 className="text-2xl font-extrabold text-center">Login Page</h1>
         <form className="fieldset" onSubmit={handleLogin}>
           <label className="label">Email</label>
           <input
@@ -69,25 +74,45 @@ export default function Login() {
             ref={emailRef}
             required
           />
+
           <label className="label">Password</label>
-          <input
-            name="password"
-            type="password"
-            className="input w-full"
-            placeholder="Password"
-            required
-          />
-          <div>
-            <a onClick={handleForgotPassword} className="link link-hover">
-              Forgot password?
-            </a>
+          <div className="relative">
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"} 
+              className="input w-full pr-10"
+              placeholder="Password"
+              required
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)} 
+              className="absolute top-3 right-3 cursor-pointer text-gray-600"
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />} 
+            </span>
           </div>
+
+          <div className="mt-2">
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              className="link link-hover text-blue-600"
+            >
+              Forgot password?
+            </button>
+          </div>
+
           <button className="btn btn-neutral mt-4">Login</button>
-          <button onClick={handleGoogle} className="btn btn-success mt-4">
-            Google
+          <button
+            type="button"
+            onClick={handleGoogle}
+            className="btn btn-success mt-4"
+          >
+            Continue with Google
           </button>
-          <p>
-            Don't have a account go to{" "}
+
+          <p className="mt-3">
+            Don’t have an account?{" "}
             <Link className="text-red-600 font-bold" to="/auth/register">
               Register
             </Link>

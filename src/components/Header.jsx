@@ -67,10 +67,10 @@ export default function Header() {
         <div className="navbar-end">
           {user ? (
             <div className="">
-              {user && user.photoUrl ? (
+              {user && user.photoURL ? (
                 <img
                   className="h-8 w-8 rounded-full"
-                  src={`${user?.photoUrl}`}
+                  src={`${user?.photoURL}`}
                   alt=""
                 />
               ) : (
