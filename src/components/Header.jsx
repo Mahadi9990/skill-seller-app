@@ -1,13 +1,14 @@
 import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Header() {
   const {user,singOutUser} =use(AuthContext)
   const handleSingout= ()=>{
     singOutUser()
     .then(() => {
-   console.log('Sign-out successful')
+   toast('Sign-out successful')
 }).catch((error) => {
    console.log(error)
 });
@@ -57,6 +58,7 @@ export default function Header() {
           <p>{user && user.email}</p>
           {user ? <button onClick={handleSingout} className="btn">LogOut</button> :<Link to='/auth/login' className="btn">Login</Link>}
         </div>
+        <ToastContainer/>
       </div>
     </div>
   );

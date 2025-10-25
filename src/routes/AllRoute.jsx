@@ -12,6 +12,7 @@ import No from "../components/no";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Auth from "../pages/Auth";
+import PrivateRoute from "../provider/PrivateRoute";
 
 export const AllRoute = createBrowserRouter([
   {
@@ -50,7 +51,11 @@ export const AllRoute = createBrowserRouter([
   },
   {
     path: "skills/:id",
-    Component: SkillsDetails,
+    element: 
+      <PrivateRoute>
+        <SkillsDetails />
+      </PrivateRoute>
+    ,
     loader: () => fetch("/8data.json"),
     HydrateFallback: Loading,
   },

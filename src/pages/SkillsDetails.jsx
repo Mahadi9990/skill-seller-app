@@ -1,5 +1,8 @@
 import React from "react";
 import { useParams, useLoaderData } from "react-router";
+import { toast, ToastContainer } from 'react-toastify';
+import Header from "../components/Header";
+
 
 export default function SkillsDetails() {
   const { id } = useParams();
@@ -16,6 +19,8 @@ export default function SkillsDetails() {
   }
 
   return (
+    <>
+    <Header/>
     <div className="max-w-5xl mx-auto p-6 md:flex gap-8 bg-white rounded-2xl shadow-lg mt-10">
       <div className="md:w-1/2">
         <img
@@ -45,10 +50,12 @@ export default function SkillsDetails() {
           <p className="text-gray-600 text-sm">📧 {skill.providerEmail}</p>
         </div>
 
-        <button className="mt-6 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
+        <button onClick={()=>toast("Enroll added")} className="mt-6 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition">
           Enroll Now
         </button>
+        <ToastContainer/>
       </div>
     </div>
+    </>
   );
 }

@@ -1,10 +1,13 @@
 import React, { use } from "react";
-import { Link } from "react-router";
-import Header from "../components/header";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../provider/AuthProvider";
+import Header from "../components/Header";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Login() {
   const {singIn,setuser} = use(AuthContext)
+  const location = useLocation()
+  const navigate = useNavigate()
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -15,12 +18,14 @@ export default function Login() {
     // Signed in 
     const user = userCredential.user;
     setuser(user)
+    navigate(`${ location.state ? location.state : '/'}`)
+    toast("Sing in successfully")
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    console.log(errorCode,errorMessage)
+    toast( errorCode , errorMessage)
   });
   };
   return (
@@ -35,6 +40,7 @@ export default function Login() {
             type="email"
             className="input w-full"
             placeholder="Email"
+            required
           />
           <label className="label">Password</label>
           <input
@@ -42,6 +48,7 @@ export default function Login() {
             type="password"
             className="input w-full"
             placeholder="Password"
+            required
           />
           <div>
             <a className="link link-hover">Forgot password?</a>
@@ -54,6 +61,7 @@ export default function Login() {
             </Link>
           </p>
         </form>
+         <ToastContainer/>
       </div>
     </div>
   );

@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../components/header'
 import Footer from '../components/Footer'
 import { Outlet } from 'react-router'
 import Extra1Div from '../components/Extra1Div'
+import Header from '../components/Header'
 
 export default function Main() {
   return (

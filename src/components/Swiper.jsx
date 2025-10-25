@@ -11,7 +11,7 @@ export default function SkillsSwiper() {
 
   return (
     <Swiper
-      className="h-screen"
+      className="h-screen mx-auto max-w-10/12 lg:max-w-12/12 "
       modules={[Navigation, Pagination]}
       navigation
       pagination={{ clickable: true }}
