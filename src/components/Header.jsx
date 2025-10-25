@@ -68,11 +68,12 @@ export default function Header() {
           {user ? (
             <div className="">
               {user && user.photoURL ? (
+                <Link to='/profile'>
                 <img
                   className="h-8 w-8 rounded-full"
                   src={`${user?.photoURL}`}
                   alt=""
-                />
+                /></Link>
               ) : (
                 <p className="px-3">
                   <FaUserCircle className="" />

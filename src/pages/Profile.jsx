@@ -5,7 +5,7 @@ import { Link, } from 'react-router'
 export default function Profile() {
   const {user} =use(AuthContext)
   if(!user){
-    return <p>User not found go for login</p>
+    return <p className='text-2xl font-bold text-center py-7'>User not found go for login</p>
   }
   return (
     <div className='p-8 mx-auto flex flex-col justify-center items-center'>
