@@ -9,9 +9,9 @@ import SkillsDetails from "../pages/SkillsDetails";
 import Error from "../pages/Error";
 import AllSkillsOutlet from "../components/AllSkillsOutlet";
 import No from "../components/no";
-import Auth from "../pages/Auth";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Auth from "../pages/Auth";
 
 export const AllRoute = createBrowserRouter([
   {
@@ -55,7 +55,7 @@ export const AllRoute = createBrowserRouter([
     HydrateFallback: Loading,
   },
   {
-    path: "auth",
+    path: "/auth",
     Component: Auth,
     children: [
       {

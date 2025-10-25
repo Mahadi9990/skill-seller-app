@@ -1,7 +1,17 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../provider/AuthProvider";
 
 export default function Header() {
+  const {user,singOutUser} =use(AuthContext)
+  const handleSingout= ()=>{
+    singOutUser()
+    .then(() => {
+   console.log('Sign-out successful')
+}).catch((error) => {
+   console.log(error)
+});
+  }
     const links =<>
             <NavLink className='pr-3' to={'/'}>Home</NavLink>
             <NavLink className='pr-3' to={'/allSkills'}>AllSkills</NavLink>
@@ -44,7 +54,8 @@ export default function Header() {
           </ul>
         </div>
         <div className="navbar-end">
-          <Link to='/auth/login' className="btn">Login</Link>
+          <p>{user && user.email}</p>
+          {user ? <button onClick={handleSingout} className="btn">LogOut</button> :<Link to='/auth/login' className="btn">Login</Link>}
         </div>
       </div>
     </div>
